@@ -56,7 +56,7 @@ export class InstanceFactory {
     const hash = getHash(cfg);
 
     if (!stores[hash]) {
-      stores[hash] = lf.createInstance(cfg);
+      stores[hash] = lf.createInstance(cfg as LocalForageOptions);
     }
 
     return stores[hash];

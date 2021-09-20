@@ -69,8 +69,8 @@ export class NgForageCache extends NgForage implements CacheConfigurable {
    */
   public getCached<T>(key: string): Promise<CachedItem<T>> {
     const keys = calculateCacheKeys(key);
-    const dataPromise = this.getItem<T>(keys.data);
-    const expiryPromise = this.getItem<number>(keys.expiry);
+    const dataPromise = this.getItem<T>(keys.data) as Promise<T>;
+    const expiryPromise = this.getItem<number>(keys.expiry) as Promise<number>;
 
     return Promise.all([dataPromise, expiryPromise]).then(toCachedItem);
   }
